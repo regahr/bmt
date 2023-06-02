@@ -1,0 +1,20 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = mysql://qo0c6593kdkj8vbqecvp:pscale_pw_vwTGnjdaOAsE2WGuoUwIadrTpP9xI7EeGx3Uau5EKBD@aws.connect.psdb.cloud/bmt?ssl={"rejectUnauthorized":true} // uses connection pooling
+  directUrl = mysql://qo0c6593kdkj8vbqecvp:pscale_pw_vwTGnjdaOAsE2WGuoUwIadrTpP9xI7EeGx3Uau5EKBD@aws.connect.psdb.cloud/bmt?ssl={"rejectUnauthorized":true} // uses a direct connection
+  shadowDatabaseUrl = mysql://qo0c6593kdkj8vbqecvp:pscale_pw_vwTGnjdaOAsE2WGuoUwIadrTpP9xI7EeGx3Uau5EKBD@aws.connect.psdb.cloud/bmt?ssl={"rejectUnauthorized":true} // used for migrations
+}
+
+model Cashflow {
+  id        String     @default(cuid()) @id
+  name     String
+  amount   Float?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+}
